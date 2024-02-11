@@ -62,7 +62,7 @@ def plot_results(strategies: list[Strategy]):
         probability_not_losing.append(strategy.prob_strat_not_losing)
         strategy_expectation.append(strategy.expectation_overall)
  
-    fig, ax1 = plt.subplots(figsize=(8, 6))
+    fig, ax1 = plt.subplots(figsize=(7, 5))
  
     ax1.set_xlabel(f'Number of d{num_sides}s rolled')
     ax1.set_ylabel('Dice sum')
@@ -86,14 +86,16 @@ def plot_results(strategies: list[Strategy]):
     plt.savefig('images/all_results.png', dpi=100)
     plt.close()
    
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(6.5, 5))
     ax.set_xlabel(f'Number of d{num_sides}s rolled')
     ax.set_ylabel(f'Expected value')
     ax.plot(number_dice_rolled, strategy_expectation, color='green',
+            marker='o',
             label='Expected roll x probability of not losing')
     loc = plticker.MultipleLocator(base=1.0)
     ax.xaxis.set_major_locator(loc)
     ax.legend()
+    fig.tight_layout()
     plt.savefig('images/strategy_results.png', dpi=100)
     print('Results written.')
 
